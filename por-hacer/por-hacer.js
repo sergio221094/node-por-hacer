@@ -23,9 +23,14 @@ const cargarDB = () => {
 
 }
 
-const getListado = () => {
+const getListado = (completado) => {
+
     cargarDB();
-    return listadoPorHacer;
+    let nuevoListado = listadoPorHacer.filter(tarea => {
+        return tarea.completado === completado
+    });
+
+    return nuevoListado;
 
 }
 
@@ -56,7 +61,7 @@ const crear = (descripcion) => {
     cargarDB();
     let porHacer = {
         descripcion,
-        completado: false
+        completado: "false"
     };
     listadoPorHacer.push(porHacer);
 
@@ -69,26 +74,32 @@ const borrar = (descripcion) => {
     cargarDB();
 
     //La forma en la que se hizo en el curso, el 'filter' funciona para 
-    //sacar el 
-    // let nuevoListado = listadoPorHacer.filter(tarea => {
-    //     return tarea.descripcion !== descripcion
-    // });
-    // if (listadoPorHacer.length === nuevoListado.length) {
-    //     return false;
-    // } else {
-    //     listadoPorHacer = nuevoListado;
-    //     guardarDB();
-    //     return true;
-    // }
+    //sacar todos los registros que no tienen la misma descripción.
+    //Por último llena un nuevo arreglo y lo compara con el inicial, si son iguales
+    //quiere decir que no encontró la descripción enviada, si son distintos
+    //remplaza el arreglo inicial con los valores del nuevo, eliminando así el registro.
 
-    let index = listadoPorHacer.findIndex(tarea => tarea.descripcion === descripcion)
-    if (index >= 0) {
-        listadoPorHacer.splice(index, 1);
+    let nuevoListado = listadoPorHacer.filter(tarea => {
+        return tarea.descripcion !== descripcion
+    });
+    if (listadoPorHacer.length === nuevoListado.length) {
+        return false;
+    } else {
+        listadoPorHacer = nuevoListado;
         guardarDB();
         return true;
-    } else {
-        return false;
     }
+
+    //Otra manera de hacerlo.
+
+    // let index = listadoPorHacer.findIndex(tarea => tarea.descripcion === descripcion)
+    // if (index >= 0) {
+    //     listadoPorHacer.splice(index, 1);
+    //     guardarDB();
+    //     return true;
+    // } else {
+    //     return false;
+    // }
 }
 
 module.exports = {

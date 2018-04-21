@@ -11,14 +11,14 @@ switch (comando) {
         break;
 
     case 'listar':
-        let listado = porHacer.getListado();
-
-        for (let tarea of listado) {
-            console.log('===== Por Hacer ======='.green);
-            console.log(tarea.descripcion);
-            console.log('Estado: ', tarea.completado);
-            console.log('======================='.green);
-        }
+        let listado = porHacer.getListado(argv.completado);
+        console.log(listado);
+        // for (let tarea of listado) {
+        //     console.log('===== Por Hacer ======='.green);
+        //     console.log(tarea.descripcion);
+        //     console.log('Estado: ', tarea.completado);
+        //     console.log('======================='.green);
+        // }
         break;
     case 'actualizar':
         let actualizado = porHacer.actualizar(argv.descripcion, argv.completado);

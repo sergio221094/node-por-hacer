@@ -1,1 +1,1 @@
-[{"descripcion":"Salir de la casa","completado":false},{"descripcion":"Comer","completado":false}]
+[{ "descripcion": "Salir de la casa", "completado": "true" }, { "descripcion": "Comer", "completado": "false" }, { "descripcion": "Estudiar", "completado": "true" }, { "descripcion": "hacer", "completado": "false" }, { "descripcion": "Hacer la tarea", "completado": "false" }, { "descripcion": "Desayunar", "completado": "false" }]
